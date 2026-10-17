@@ -16,6 +16,8 @@ earlier history is mlx-serve's, in that project's changelog.
 - **DFlash2 speeds up image, video and sampled requests on Qwen3.8-Flash-Next**: a request with images now decodes with the drafter (about 1.7-2x plain decoding, output unchanged) instead of falling back to plain decoding, and the speed gate judges a request on its steady rounds against today's verify cost, so it no longer stops DFlash2 where it is winning.
 - **Adaptive DFlash2 for GLM-5.3-Flash**: GLM verifies 2 to 8 draft rows per round as the drafter's confidence pays, and a request whose drafts stop paying falls back to plain decoding and retries later (`--drafter-min-depth` / `--drafter-max-depth`).
 - **DeepSeek-V4.1-Flash**: serves the original checkpoint and STQ packs of it with the routed experts streamed from SSD, DSpark speculative decoding, image input (`--vision`), the prefix cache on RAM and SSD, DSML tool calls and `--drop-expert` to trade a few re-routed experts for memory.
+- **Claude Code can count tokens**: `POST /v1/messages/count_tokens` answers `{"input_tokens": N}`, the prompt a
+  `/v1/messages` request with the same body would prefill, images included, without generating anything.
 
 ## v1.3.0 — Qwen EXL3 Quantizer, Adaptive DFlash2, KV6, Dashboard
 
